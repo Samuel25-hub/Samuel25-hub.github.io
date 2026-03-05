@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Owusu — Technical Communication Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --blue: #1a3a6b;
+    --accent: #c9a84c;
+    --accent-light: #e8c97a;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --border: #e2d9c8;
+    --card-bg: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 31, 61, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent); font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 100px 0 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(26,58,107,0.6) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--accent) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2.5rem;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.8rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.2rem);
+    font-weight: 700; line-height: 1.08;
+    color: var(--white); margin-bottom: 0.3rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.55);
+    font-weight: 300; margin-bottom: 2rem; letter-spacing: 0.02em;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-desc {
+    max-width: 560px; font-size: 1rem; line-height: 1.75;
+    color: rgba(255,255,255,0.7); margin-bottom: 2.8rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.8rem;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+  .pill {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7); font-size: 0.78rem;
+    padding: 0.3rem 0.85rem; border-radius: 100px; font-weight: 400;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+    font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em;
+    padding: 0.85rem 2rem; border-radius: 3px; text-decoration: none;
+    text-transform: uppercase; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+    font-weight: 500; font-size: 0.88rem; letter-spacing: 0.04em;
+    padding: 0.85rem 2rem; border-radius: 3px; text-decoration: none;
+    text-transform: uppercase; transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.3); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(201,168,76,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--white);
+    padding: 6rem 2.5rem;
+  }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start;
+  }
+  .about-left {}
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700;
+    line-height: 1.2; color: var(--navy); margin-bottom: 1.5rem;
+  }
+  .about-text {
+    font-size: 0.97rem; line-height: 1.85; color: #4b5563; margin-bottom: 1.2rem;
+  }
+  .about-right {}
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .skill-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.2rem 1.4rem;
+    border-top: 3px solid var(--accent);
+  }
+  .skill-card h4 {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 0.6rem;
+  }
+  .skill-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  .cert-list { margin-top: 2rem; }
+  .cert-list h4 {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 0.9rem;
+  }
+  .cert-item {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; color: #4b5563;
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    flex-shrink: 0; margin-top: 0.35rem;
+  }
+
+  /* ── PORTFOLIO ── */
+  .portfolio {
+    background: var(--cream);
+    padding: 6rem 2.5rem;
+  }
+  .portfolio-inner { max-width: 1100px; margin: 0 auto; }
+  .portfolio-header { text-align: center; margin-bottom: 3.5rem; }
+  .portfolio-header .section-title { margin-bottom: 0.8rem; }
+  .portfolio-header p { font-size: 0.97rem; color: var(--muted); max-width: 520px; margin: 0 auto; }
+
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem;
+  }
+
+  .work-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .work-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(15,31,61,0.12); }
+
+  .card-accent-bar { height: 4px; background: var(--accent); }
+  .card-accent-bar.blue { background: linear-gradient(90deg, #1a3a6b, #2e6bb5); }
+  .card-accent-bar.teal { background: linear-gradient(90deg, #0d5c63, #17a2b2); }
+  .card-accent-bar.warm { background: linear-gradient(90deg, #7c3d14, #c9681c); }
+  .card-accent-bar.gold { background: linear-gradient(90deg, #b8860b, var(--accent)); }
+
+  .card-body { padding: 1.8rem 2rem; flex: 1; display: flex; flex-direction: column; }
+  .card-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.7rem;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600; color: var(--navy);
+    line-height: 1.3; margin-bottom: 0.8rem;
+  }
+  .card-desc {
+    font-size: 0.88rem; line-height: 1.75; color: #4b5563; margin-bottom: 1.4rem; flex: 1;
+  }
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.4rem;
+  }
+  .tag {
+    background: var(--cream); border: 1px solid var(--border);
+    font-size: 0.72rem; color: #6b7280;
+    padding: 0.25rem 0.65rem; border-radius: 100px;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1.2rem; border-top: 1px solid var(--border);
+  }
+  .card-meta { font-size: 0.78rem; color: var(--muted); }
+  .card-link {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--navy); text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .card-link:hover { color: var(--accent); }
+  .card-link svg { transition: transform 0.2s; }
+  .card-link:hover svg { transform: translateX(3px); }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--navy); padding: 6rem 2.5rem;
+  }
+  .contact-inner {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .contact .section-label { color: var(--accent-light); }
+  .contact .section-title { color: var(--white); margin-bottom: 1rem; }
+  .contact-desc { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; line-height: 1.75; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: rgba(255,255,255,0.75); font-size: 0.9rem;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--accent-light); }
+  .contact-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 1rem; transition: border-color 0.2s;
+  }
+  .contact-item:hover .contact-icon { border-color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080f1e; padding: 1.8rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem; color: rgba(201,168,76,0.5); font-weight: 600;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Samuel Owusu</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Technical Communication Portfolio</div>
+    <h1>Samuel<br/><span>Owusu</span></h1>
+    <p class="hero-sub">B.S. Technical Communication &nbsp;·&nbsp; University of Houston-Downtown</p>
+    <p class="hero-desc">
+      I translate complex information into clear, user-centered communication.
+      From usability research and document design to data analysis and content strategy —
+      I build materials that inform, guide, and engage.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">Technical Writing</span>
+      <span class="pill">UX Research</span>
+      <span class="pill">Document Design</span>
+      <span class="pill">Usability Testing</span>
+      <span class="pill">Data Analysis</span>
+      <span class="pill">Content Strategy</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <p class="section-label">// About Me</p>
+      <h2 class="section-title">Clarity is a design decision.</h2>
+      <p class="about-text">
+        I'm a Technical Communication graduate from the University of Houston-Downtown
+        (Dean's List, Spring 2025) with hands-on experience in usability testing, document
+        design, content editing, and multimedia production.
+      </p>
+      <p class="about-text">
+        My background spans UX research, visual design analysis, data reporting, and
+        professional editing — giving me a versatile toolkit for roles in technical writing,
+        content strategy, and UX communication.
+      </p>
+      <p class="about-text">
+        Based in Houston, TX and open to both in-person and remote opportunities.
+      </p>
+    </div>
+    <div class="about-right">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Writing & Editing</h4>
+          <p>Technical writing, plain language, copyreading, style sheets, SOPs</p>
+        </div>
+        <div class="skill-card">
+          <h4>UX Research</h4>
+          <p>Usability testing, heuristic evaluation, user feedback analysis</p>
+        </div>
+        <div class="skill-card">
+          <h4>Document Design</h4>
+          <p>Typography, layout, visual hierarchy, accessible formats</p>
+        </div>
+        <div class="skill-card">
+          <h4>Tools</h4>
+          <p>Microsoft Office, Excel, Canva, Word Track Changes, Markdown</p>
+        </div>
+      </div>
+
+      <div class="cert-list">
+        <h4>Certifications</h4>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>IBM Enterprise Design Thinking Practitioner</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>IBM Information Technology Fundamentals</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>Microsoft Office Specialist: PowerPoint 2013</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>Coursera: Introduction to Data Analysis using Microsoft Excel</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>Coursera: Using Basic Formulas and Functions in Microsoft Excel</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <span>Coursera: Getting Started with Microsoft Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-inner">
+    <div class="portfolio-header">
+      <p class="section-label">// Selected Work</p>
+      <h2 class="section-title">Portfolio</h2>
+      <p>A selection of academic and professional projects demonstrating research, analysis, writing, and design skills.</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- Card 1: Heuristic Evaluation -->
+      <div class="work-card">
+        <div class="card-accent-bar blue"></div>
+        <div class="card-body">
+          <p class="card-category">UX Research &nbsp;·&nbsp; Usability</p>
+          <h3 class="card-title">Heuristic Evaluation of Walmart.com</h3>
+          <p class="card-desc">
+            A structured usability inspection of Walmart's e-commerce platform assessed against
+            six targeted heuristics. Identified two high-severity and four moderate-severity
+            issues with actionable recommendations and a prioritized findings summary table.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Heuristic Evaluation</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">Usability Report</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-meta">UHD TCOM Program · 2025</span>
+            <a href="#" class="card-link">
+              View Document
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Design Analysis -->
+      <div class="work-card">
+        <div class="card-accent-bar warm"></div>
+        <div class="card-body">
+          <p class="card-category">Document Design &nbsp;·&nbsp; Visual Analysis</p>
+          <h3 class="card-title">Strategic Design Analysis: Munch Time Flyer</h3>
+          <p class="card-desc">
+            Applied twelve design principles — including harmony, balance, emphasis, contrast,
+            and alignment — to evaluate a promotional flyer for a catering business.
+            Delivered prioritized revision recommendations across High, Medium, and Low tiers.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Design Principles</span>
+            <span class="tag">Visual Communication</span>
+            <span class="tag">Document Analysis</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-meta">UHD TCOM 3328 · 2025</span>
+            <a href="#" class="card-link">
+              View Document
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Documentation Analysis -->
+      <div class="work-card">
+        <div class="card-accent-bar teal"></div>
+        <div class="card-body">
+          <p class="card-category">Technical Writing &nbsp;·&nbsp; Documentation</p>
+          <h3 class="card-title">Documentation Analysis: Fitbit Inspire 3 User Manual</h3>
+          <p class="card-desc">
+            A comprehensive analysis of the Fitbit Inspire 3 user manual examining genre
+            conventions, rhetorical appeals (logos, ethos, pathos), organizational patterns,
+            and document design effectiveness. Identified gaps in visual aids and navigation
+            for print users.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Rhetorical Analysis</span>
+            <span class="tag">User Manual Review</span>
+            <span class="tag">Document Design</span>
+            <span class="tag">Technical Writing</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-meta">UHD TCOM Program · 2025</span>
+            <a href="#" class="card-link">
+              View Document
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Client Editing -->
+      <div class="work-card">
+        <div class="card-accent-bar gold"></div>
+        <div class="card-body">
+          <p class="card-category">Editing &nbsp;·&nbsp; Professional Writing</p>
+          <h3 class="card-title">Client Editing Project & Style Sheet</h3>
+          <p class="card-desc">
+            Edited a 2,500-word document for a real-world client using Microsoft Word Track
+            Changes. Ensured clarity, accuracy, and alignment with project goals. Developed
+            a comprehensive style sheet to standardize document format, tone, and terminology
+            for ongoing use.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Copyediting</span>
+            <span class="tag">Track Changes</span>
+            <span class="tag">Style Guide</span>
+            <span class="tag">Plain Language</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-meta">UHD TCOM 4322 · 2024</span>
+            <a href="#" class="card-link">
+              View Document
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label">// Let's Connect</p>
+    <h2 class="section-title">Open to Opportunities</h2>
+    <p class="contact-desc">
+      I'm actively seeking entry-level roles in technical writing, UX writing, content strategy,
+      and documentation. Based in Houston, TX — open to remote and hybrid positions.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:Duahsamuel45@gmail.com" class="contact-item">
+        <div class="contact-icon">✉</div>
+        Duahsamuel45@gmail.com
+      </a>
+      <a href="tel:3467775548" class="contact-item">
+        <div class="contact-icon">☎</div>
+        (346) 777-5548
+      </a>
+      <a href="https://www.linkedin.com/in/samuel-owusu" target="_blank" class="contact-item">
+        <div class="contact-icon">in</div>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Samuel Owusu</div>
+  <p>B.S. Technical Communication · University of Houston-Downtown · Houston, TX</p>
+</footer>
+
+</body>
+</html>
