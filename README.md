@@ -41,6 +41,18 @@ https://jd-detector.vercel.app/
 
 ---
 
+---
+
+### EHR Patient API Documentation Portal
+
+Healthcare-focused developer portal demonstrating SMART on FHIR authentication, OAuth 2.0 workflows, HIPAA-aware documentation practices, and clinical API endpoint documentation.
+
+Live Site:
+https://samuel25-hub.github.io/ehr-api-portal/
+
+GitHub Repository:
+https://github.com/Samuel25-hub/ehr-api-portal
+
 ## Contact
 
 Email:
