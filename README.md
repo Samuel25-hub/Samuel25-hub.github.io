@@ -63,3 +63,21 @@ https://github.com/Samuel25-hub
 
 LinkedIn:
 https://www.linkedin.com/in/samuel-owusu-1105aa196
+
+---
+
+### Clinical Trial Protocol Documentation System
+
+Healthcare-focused clinical research documentation package modeled on ICH E6 Good Clinical Practice guidelines.
+
+Includes:
+- Investigator Guide
+- Plain-Language Informed Consent Summary
+- Data Collection SOP
+- Adverse Event Reporting Runbook
+
+Live Site:
+https://samuel25-hub.github.io/clinical-trial-docs/
+
+GitHub Repository:
+https://github.com/Samuel25-hub/clinical-trial-docs
