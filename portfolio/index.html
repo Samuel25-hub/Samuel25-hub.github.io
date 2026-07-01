@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samuel Owusu — Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF6EC;
+    --ink: #1C140F;
+    --red: #C1272D;
+    --gold: #E8A93A;
+    --green: #1F5C3E;
+    --muted: #8A7F6E;
+    --line: rgba(28,20,15,0.14);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(251,246,236,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1120px; margin:0 auto; padding: 16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:'Space Mono', monospace; font-weight:700; font-size:13px;
+    letter-spacing: 0.12em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; background: var(--red); box-shadow: 0 0 0 3px rgba(193,39,45,0.18); }
+  .nav-links{ display:flex; gap:26px; font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.08em; }
+  .nav-links a{ text-decoration:none; opacity:0.75; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover, .nav-links a:focus-visible{ opacity:1; border-color: var(--red); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 88px 0 56px; position:relative; overflow:hidden; }
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.16em;
+    color: var(--red); text-transform:uppercase; margin:0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background: var(--red); display:inline-block; }
+  h1.title{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: clamp(52px, 10vw, 118px);
+    line-height: 0.92;
+    margin: 0 0 22px;
+    letter-spacing: 0.5px;
+  }
+  h1.title span{ color: var(--green); }
+  .hero-sub{
+    max-width: 560px; font-size: 19px; line-height:1.55; color: #3a2e24;
+    margin: 0 0 30px;
+  }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    font-family:'Space Mono', monospace; font-size:11.5px; letter-spacing:0.05em;
+    border:1px solid var(--line); border-radius: 999px; padding:7px 14px;
+    color:#4a3c30;
+  }
+
+  /* ---------- Dial / schedule strip ---------- */
+  .strip{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(90deg, rgba(193,39,45,0.06), rgba(232,169,58,0.06), rgba(31,92,62,0.06));
+  }
+  .strip-inner{
+    max-width:1120px; margin:0 auto; padding: 22px 28px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .freq{ display:flex; flex-direction:column; gap:4px; text-decoration:none; }
+  .freq-num{
+    font-family:'Anton', sans-serif; font-size: 30px; letter-spacing:0.5px;
+  }
+  .freq-name{ font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+  .freq-time{ font-family:'Space Mono', monospace; font-size:11px; color: var(--muted); }
+  .freq:nth-child(1) .freq-num{ color: var(--red); }
+  .freq:nth-child(2) .freq-num{ color: var(--gold); }
+  .freq:nth-child(3) .freq-num{ color: var(--green); }
+
+  /* ---------- Section heading ---------- */
+  .section{ padding: 96px 0; }
+  .section-head{ margin-bottom: 48px; max-width: 620px; }
+  .section-label{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.16em;
+    color: var(--muted); text-transform:uppercase; margin:0 0 10px;
+  }
+  .section-title{
+    font-family:'Anton', sans-serif; font-weight:400; font-size: clamp(30px, 4.5vw, 44px);
+    margin:0 0 14px; line-height:1.05;
+  }
+  .section-body{ font-size:16px; line-height:1.6; color:#4a3c30; margin:0; }
+
+  /* ---------- Case studies ---------- */
+  .case{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px;
+    align-items:center; padding: 56px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .case:last-child{ border-bottom:none; }
+  .case.reverse{ direction: rtl; }
+  .case.reverse > *{ direction: ltr; }
+  .case-media{ position:relative; }
+  .case-media img{ border-radius: 4px; box-shadow: 0 24px 60px -20px rgba(28,20,15,0.35); }
+  .case-freq-tag{
+    position:absolute; top:-14px; left:-14px;
+    font-family:'Anton', sans-serif; font-size:15px;
+    background: var(--ink); color: var(--bg);
+    padding:6px 12px; border-radius:3px; letter-spacing:0.5px;
+  }
+  .case-body .kicker{
+    font-family:'Space Mono', monospace; font-size:11.5px; letter-spacing:0.1em;
+    color: var(--muted); text-transform:uppercase; margin:0 0 10px;
+  }
+  .case-body h3{
+    font-family:'Anton', sans-serif; font-weight:400; font-size: clamp(28px,3.5vw,38px);
+    margin: 0 0 16px; line-height:1.05;
+  }
+  .case-body p{ font-size:15.5px; line-height:1.65; color:#4a3c30; margin: 0 0 22px; }
+  .meta-grid{
+    display:grid; grid-template-columns: repeat(3, auto); gap: 26px;
+    border-top: 1px solid var(--line); padding-top: 18px;
+  }
+  .meta-grid div{ font-size:12.5px; }
+  .meta-grid .k{ font-family:'Space Mono', monospace; color: var(--muted); letter-spacing:0.05em; margin-bottom:4px; display:block; }
+  .meta-grid .v{ font-weight:600; }
+
+  /* ---------- About ---------- */
+  .about{ background: var(--ink); color: var(--bg); }
+  .about .section-label{ color: var(--gold); }
+  .about .section-body{ color: #d9cfc0; }
+  .skill-rows{ margin-top: 40px; display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(251,246,236,0.16); }
+  .skill-row{
+    display:grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 18px 0;
+    border-bottom:1px solid rgba(251,246,236,0.16); align-items:baseline;
+  }
+  .skill-row .label{ font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.08em; color: var(--gold); text-transform:uppercase; }
+  .skill-row .value{ font-size:15px; color:#e8e1d5; line-height:1.5; }
+
+  /* ---------- Footer / contact ---------- */
+  .footer{ padding: 96px 0 60px; }
+  .footer-title{
+    font-family:'Anton', sans-serif; font-weight:400; font-size: clamp(38px,6vw,70px);
+    margin:0 0 26px; line-height:1;
+  }
+  .footer-links{ display:flex; flex-wrap:wrap; gap: 14px; margin-bottom: 56px; }
+  .footer-links a{
+    text-decoration:none; font-family:'Space Mono', monospace; font-size:13px;
+    border:1px solid var(--line); padding:12px 18px; border-radius: 999px;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .footer-links a:hover, .footer-links a:focus-visible{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .signoff{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    border-top:1px solid var(--line); padding-top: 24px;
+    font-family:'Space Mono', monospace; font-size:11.5px; color: var(--muted); letter-spacing:0.04em;
+  }
+
+  @media (max-width: 760px){
+    .strip-inner{ grid-template-columns: 1fr; gap: 22px; }
+    .case, .case.reverse{ grid-template-columns: 1fr; direction:ltr; gap: 28px; }
+    .meta-grid{ grid-template-columns: 1fr 1fr; }
+    .skill-row{ grid-template-columns: 1fr; gap:6px; }
+  }
+
+  :focus-visible{ outline: 2px solid var(--red); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-mark"><span class="dot"></span> S. OWUSU — ON AIR</div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Portfolio — Houston, TX</p>
+      <h1 class="title">DESIGN<br>THAT GETS<br><span>AIRTIME.</span></h1>
+      <p class="hero-sub">I'm Samuel Owusu, a designer who builds visual identities for music and media programming — most recently three weekly show campaigns for iRadio at the University of Houston-Downtown, reaching listeners across social and on-air.</p>
+      <div class="hero-tags">
+        <span class="tag">Photoshop</span>
+        <span class="tag">Illustrator</span>
+        <span class="tag">InDesign</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Canva</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="strip-inner">
+      <a class="freq" href="#global-ghana">
+        <span class="freq-num">88.1</span>
+        <span class="freq-name">Global Ghana</span>
+        <span class="freq-time">Mon &amp; Fri — 12–3PM</span>
+      </a>
+      <a class="freq" href="#ghana-drill">
+        <span class="freq-num">92.7</span>
+        <span class="freq-name">Ghana Drill Vibes</span>
+        <span class="freq-time">Tue &amp; Thu — 2–3PM</span>
+      </a>
+      <a class="freq" href="#fameye-live">
+        <span class="freq-num">100.5</span>
+        <span class="freq-name">Fameye Live</span>
+        <span class="freq-time">Tuesday — 12–1PM</span>
+      </a>
+    </div>
+  </div>
+
+  <main id="work" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title">Three shows, three visual languages.</h2>
+        <p class="section-body">Each campaign needed to stand on its own while still reading as part of the same station. Below is the brief, the approach, and the tools behind each poster.</p>
+      </div>
+
+      <div class="case" id="global-ghana">
+        <div class="case-media">
+          <span class="case-freq-tag">88.1 FM</span>
+          <img src="assets/global-ghana.jpg" alt="Global Ghana radio show poster featuring a world map and the show's hosts">
+        </div>
+        <div class="case-body">
+          <p class="kicker">Flagship Show Campaign</p>
+          <h3>Global Ghana</h3>
+          <p>The flagship show needed a poster that read instantly as "Ghanaian music, worldwide reach." I built the layout around a two-tone map in the station's red and green, anchored by a tight lineup of the real hosts so the show felt personal, not stock. A bold cream display face keeps the headline legible over the busy background at social-feed size.</p>
+          <div class="meta-grid">
+            <div><span class="k">Role</span><span class="v">Sole Designer</span></div>
+            <div><span class="k">Tools</span><span class="v">Photoshop, Illustrator</span></div>
+            <div><span class="k">Format</span><span class="v">Social + In-Studio</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case reverse" id="ghana-drill">
+        <div class="case-media">
+          <span class="case-freq-tag">92.7 FM</span>
+          <img src="assets/ghana-drill.jpg" alt="Ghana Drill Vibes poster with a red-to-green duotone photo treatment and hand-lettered title">
+        </div>
+        <div class="case-body">
+          <p class="kicker">Genre Segment Campaign</p>
+          <h3>Ghana Drill Vibes</h3>
+          <p>Drill needed to feel rawer than the flagship brand without breaking from it. I pushed a red-to-green duotone over documentary-style photography of the artists, then paired it with hand-lettered, marker-style type to match the genre's street energy — same palette family, completely different register.</p>
+          <div class="meta-grid">
+            <div><span class="k">Role</span><span class="v">Sole Designer</span></div>
+            <div><span class="k">Tools</span><span class="v">Photoshop, Hand Lettering</span></div>
+            <div><span class="k">Format</span><span class="v">Social + In-Studio</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" id="fameye-live">
+        <div class="case-media">
+          <span class="case-freq-tag">100.5 FM</span>
+          <img src="assets/fameye-live.jpg" alt="Fameye Live poster with diagonal color-blocked background in red, gold and green">
+        </div>
+        <div class="case-body">
+          <p class="kicker">Artist Feature Poster</p>
+          <h3>Fameye Live</h3>
+          <p>A single-artist feature for an exclusive on-air interview and performance. The diagonal color-blocking pulls directly from the Ghanaian flag palette, while a centered typographic lockup and clean portrait cutout keep the focus on the artist and tie the poster back into the wider station identity.</p>
+          <div class="meta-grid">
+            <div><span class="k">Role</span><span class="v">Sole Designer</span></div>
+            <div><span class="k">Tools</span><span class="v">Photoshop, Illustrator</span></div>
+            <div><span class="k">Format</span><span class="v">Social + In-Studio</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section id="about" class="about">
+    <div class="wrap section">
+      <div class="section-head">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Technical Communication grad, design-trained on the job.</h2>
+        <p class="section-body">I studied Technical Communication at the University of Houston-Downtown, but my working hours went to iRadio — designing the graphics, typography, and layout systems that got these shows in front of an audience. That combination means I care as much about whether a poster gets read correctly as whether it looks good.</p>
+      </div>
+      <div class="skill-rows">
+        <div class="skill-row">
+          <span class="label">Software</span>
+          <span class="value">Adobe Photoshop, Illustrator, InDesign, Figma, Canva</span>
+        </div>
+        <div class="skill-row">
+          <span class="label">Principles</span>
+          <span class="value">Typography, layout &amp; composition, visual hierarchy, brand consistency, color theory</span>
+        </div>
+        <div class="skill-row">
+          <span class="label">Output</span>
+          <span class="value">Social graphics, promotional posters, marketing collateral, print &amp; digital materials</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="wrap">
+      <h2 class="footer-title">Let's work<br>together.</h2>
+      <div class="footer-links">
+        <a href="mailto:Duahsamuel45@gmail.com">Duahsamuel45@gmail.com</a>
+        <a href="https://github.com/Samuel25-hub" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/samuel-owusu-1105aa196" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="signoff">
+        <span>SAMUEL OWUSU — DESIGN PORTFOLIO</span>
+        <span>HOUSTON, TX</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
